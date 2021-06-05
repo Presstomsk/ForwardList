@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -25,8 +25,8 @@ public:
 	Element(int Data, Element* pNext = nullptr)
 	{
 		count++;
-		this->Data = Data;//Данные
-		this->pNext = pNext;//указатель на следующий элемент
+		this->Data = Data;//Р”Р°РЅРЅС‹Рµ
+		this->pNext = pNext;//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 		cout << "EConstructor:\t" << this << endl;
 	}
 	~Element()
@@ -83,7 +83,7 @@ public:
 };
 class ForwardList
 {
-	Element* Head;//Адрес начального элемента
+	Element* Head;//РђРґСЂРµСЃ РЅР°С‡Р°Р»СЊРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 	unsigned int size;
 public:
 	Element* get_Head() const
@@ -104,7 +104,7 @@ public:
 	}
 	ForwardList()
 	{
-		Head = nullptr;//Если Голова указывает на 0, то список пуст
+		Head = nullptr;//Р•СЃР»Рё Р“РѕР»РѕРІР° СѓРєР°Р·С‹РІР°РµС‚ РЅР° 0, С‚Рѕ СЃРїРёСЃРѕРє РїСѓСЃС‚
 		size = 0;
 		cout << "LConstructor:\t" << this << endl;
 	}
@@ -120,11 +120,11 @@ public:
 	{   
 		//size = 0;
 		//Head = nullptr;
-		Element* Temp = other.Head;//Итератор Temp будет проходить по списку other
+		Element* Temp = other.Head;//РС‚РµСЂР°С‚РѕСЂ Temp Р±СѓРґРµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РїРѕ СЃРїРёСЃРєСѓ other
 		while (Temp)
 		{
-			push_back(Temp->Data);//Каждый элемент списка other добавляем в конец нашего списка
-			Temp = Temp->pNext; // Переход на следующий элемент
+			push_back(Temp->Data);//РљР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР° other РґРѕР±Р°РІР»СЏРµРј РІ РєРѕРЅРµС† РЅР°С€РµРіРѕ СЃРїРёСЃРєР°
+			Temp = Temp->pNext; // РџРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 		}
 		cout << "CopyConstructor:\t" << this << endl;
 	}
@@ -143,50 +143,50 @@ public:
 	// Adding elements
 	void push_front(int Data)
 	{
-		//1) Создаем новый элемент
+		//1) РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
-		//2) Привязываем новый элемент к списку
+		//2) РџСЂРёРІСЏР·С‹РІР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ Рє СЃРїРёСЃРєСѓ
 		New->pNext = Head;
-		//3) Говорим, что новый элемент будет начальным элементом списка
+		//3) Р“РѕРІРѕСЂРёРј, С‡С‚Рѕ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ Р±СѓРґРµС‚ РЅР°С‡Р°Р»СЊРЅС‹Рј СЌР»РµРјРµРЅС‚РѕРј СЃРїРёСЃРєР°
 		Head = New;
 		size++;
 	}
 	void push_back(int Data)
 	{
-		if (Head == nullptr)//Если список пуст, вызываем push_front
+		if (Head == nullptr)//Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚, РІС‹Р·С‹РІР°РµРј push_front
 		{
 			push_front(Data);
 			return;
 		}
-	    //1) Создаем новый элемент
+	    //1) РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
-		//2) Доходим до конца списка
+		//2) Р”РѕС…РѕРґРёРј РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°
 		Element* Temp = Head;
 		while (Temp->pNext)
 			Temp = Temp->pNext;
-		//3) Прикрепляем новый элемент к последнему
+		//3) РџСЂРёРєСЂРµРїР»СЏРµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ Рє РїРѕСЃР»РµРґРЅРµРјСѓ
 		Temp->pNext = New;
 		size++;
 	}
 	// Erasing elements:
 	void pop_front()
 	{
-	    //1) Запоминаем адрес удаляемого элемента
+	    //1) Р—Р°РїРѕРјРёРЅР°РµРј Р°РґСЂРµСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		Element* to_del = Head;
-		//Исключаем удаляемый элемент из списка
+		//РСЃРєР»СЋС‡Р°РµРј СѓРґР°Р»СЏРµРјС‹Р№ СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
 		Head = Head->pNext;
-		//3) Удаляем элемент из памяти
+		//3) РЈРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚ РёР· РїР°РјСЏС‚Рё
 		delete to_del;
 		size--;
 	}
 	void pop_back()
-	{   //1) Доходим до предпоследнего элемента
+	{   //1) Р”РѕС…РѕРґРёРј РґРѕ РїСЂРµРґРїРѕСЃР»РµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
 		Element* to_del = Head;
 		while (to_del->pNext->pNext)
 			to_del = to_del->pNext;
-		//2) Удаляем последний элемент из памяти
+		//2) РЈРґР°Р»СЏРµРј РїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РёР· РїР°РјСЏС‚Рё
 		delete to_del->pNext;
-		//3) Зануляем указатель на предпоследний элемент
+		//3) Р—Р°РЅСѓР»СЏРµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РїСЂРµРґРїРѕСЃР»РµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 		to_del->pNext = nullptr;
 		size--;
 	}
@@ -198,14 +198,14 @@ public:
 			return;
 		}
 		if (Index >= size)return;
-		Element* Temp = Head;// Итератор
-		for (int i = 0; i < Index - 1; i++)//Доходим до элемента перед удаляемым
+		Element* Temp = Head;// РС‚РµСЂР°С‚РѕСЂ
+		for (int i = 0; i < Index - 1; i++)//Р”РѕС…РѕРґРёРј РґРѕ СЌР»РµРјРµРЅС‚Р° РїРµСЂРµРґ СѓРґР°Р»СЏРµРјС‹Рј
 		{
 			Temp = Temp->pNext;
 		}
-		Element* to_del = Temp->pNext;//Запоминаем адрес удаляемого элемента
-		Temp->pNext = Temp->pNext->pNext;//Исключаем элемент из списка
-		delete to_del;//Удаляем элемент*/
+		Element* to_del = Temp->pNext;//Р—Р°РїРѕРјРёРЅР°РµРј Р°РґСЂРµСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
+		Temp->pNext = Temp->pNext->pNext;//РСЃРєР»СЋС‡Р°РµРј СЌР»РµРјРµРЅС‚ РёР· СЃРїРёСЃРєР°
+		delete to_del;//РЈРґР°Р»СЏРµРј СЌР»РµРјРµРЅС‚*/
 		size--;
 	}
 	void insert(int Index, int Data)
@@ -216,15 +216,15 @@ public:
 			return;
 		}
 		if (Index > size)return;
-		//1) Создаем новый элемент
+		//1) РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
 		Element* Temp = Head;
-		//2) Доходим до нужного элемента
+		//2) Р”РѕС…РѕРґРёРј РґРѕ РЅСѓР¶РЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		for (int i = 0; i < Index-1; i++)
 		{
 			Temp = Temp->pNext;			
 		}
-		//3) Вставляем нужный элемент на необходимую позицию
+		//3) Р’СЃС‚Р°РІР»СЏРµРј РЅСѓР¶РЅС‹Р№ СЌР»РµРјРµРЅС‚ РЅР° РЅРµРѕР±С…РѕРґРёРјСѓСЋ РїРѕР·РёС†РёСЋ
 		New->pNext = Temp->pNext;
 		Temp->pNext = New;
 		size++;
@@ -233,11 +233,11 @@ public:
 	{
 		if (this == &other)return *this;
 		while (Head)pop_front();
-		Element* Temp = other.Head;//Итератор Temp будет проходить по списку other
+		Element* Temp = other.Head;//РС‚РµСЂР°С‚РѕСЂ Temp Р±СѓРґРµС‚ РїСЂРѕС…РѕРґРёС‚СЊ РїРѕ СЃРїРёСЃРєСѓ other
 		while (Temp)
 		{
-			push_back(Temp->Data);//Каждый элемент списка other добавляем в конец нашего списка
-			Temp = Temp->pNext; // Переход на следующий элемент
+			push_back(Temp->Data);//РљР°Р¶РґС‹Р№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР° other РґРѕР±Р°РІР»СЏРµРј РІ РєРѕРЅРµС† РЅР°С€РµРіРѕ СЃРїРёСЃРєР°
+			Temp = Temp->pNext; // РџРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 		}
 		cout << "CopyAssignment:\t" << this << endl;
 		return *this;
@@ -253,13 +253,13 @@ public:
 	}
 	ForwardList& operator+=(const ForwardList& right) 
 	{
-		//1) Доходим до конца первого списка
+		//1) Р”РѕС…РѕРґРёРј РґРѕ РєРѕРЅС†Р° РїРµСЂРІРѕРіРѕ СЃРїРёСЃРєР°
 		
 		ForwardList Copyright = right;
 		Element* Temp = this->Head;
 		while (Temp->pNext)
 			Temp=Temp->pNext;
-		//3) "Сшиваем списки"
+		//3) "РЎС€РёРІР°РµРј СЃРїРёСЃРєРё"
 		Temp->pNext = Copyright.Head;
 		Copyright.Head=nullptr;
 		return *this;
@@ -268,20 +268,20 @@ public:
 	//Methods
 	void print()
 	{
-		Element* Temp = Head;//Temp-итератор.
-		while (Temp)         //Итератор-это указатель, при помощи которого
-			                 //можно получить доступ к элементам структуры данных
+		Element* Temp = Head;//Temp-РёС‚РµСЂР°С‚РѕСЂ.
+		while (Temp)         //РС‚РµСЂР°С‚РѕСЂ-СЌС‚Рѕ СѓРєР°Р·Р°С‚РµР»СЊ, РїСЂРё РїРѕРјРѕС‰Рё РєРѕС‚РѕСЂРѕРіРѕ
+			                 //РјРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ РґРѕСЃС‚СѓРї Рє СЌР»РµРјРµРЅС‚Р°Рј СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…
 		{
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
 			Temp = Temp->pNext;
 		}
-		cout << "Количество элементов списка: " << size << endl;
-		cout << "Общее количество элементов: " << Element::count << endl;
+		cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°: " << size << endl;
+		cout << "РћР±С‰РµРµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: " << Element::count << endl;
 	}
 };
 ForwardList operator+(const ForwardList& left, const ForwardList& right)
 {
-	//1) Доходим до конца первого списка
+	//1) Р”РѕС…РѕРґРёРј РґРѕ РєРѕРЅС†Р° РїРµСЂРІРѕРіРѕ СЃРїРёСЃРєР°
 	ForwardList cat = left;
 	for (Element* Temp = right.get_Head(); Temp; Temp = Temp->pNext)
 		cat.push_back(Temp->Data);
@@ -296,8 +296,8 @@ void main()
 {
 	setlocale(LC_ALL, "");
 #ifdef COPY_METHODS_CHECK
-	int n; //Размер списка
-	cout << "Введите количество элементов списка: "; cin >> n;
+	int n; //Р Р°Р·РјРµСЂ СЃРїРёСЃРєР°
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ СЃРїРёСЃРєР°: "; cin >> n;
 	ForwardList list,list5;
 	for (int i = 0; i < n; i++)
 	{
@@ -313,11 +313,11 @@ void main()
 	list.pop_back();
 	list.print();
 	int index, value;
-	cout << "Введите индекс добавляемого элемента: "; cin >> index;
-	cout << "Введите значение добавляемого элемента: "; cin >> value;
+	cout << "Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°: "; cin >> index;
+	cout << "Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РґРѕР±Р°РІР»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°: "; cin >> value;
 	list.insert(index,value);
 	list.print();
-	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	cout << "Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р°: "; cin >> index;
 	list.erase(index);
 	list.print();
 	ForwardList list2 = list; //CopyConstructor
@@ -350,7 +350,7 @@ void main()
 		cout << arr[i] << tab;
 	}
 	cout << endl;
-	//Range-based for(Цикл for для контейнера)
+	//Range-based for(Р¦РёРєР» for РґР»СЏ РєРѕРЅС‚РµР№РЅРµСЂР°)
 	for (int i : arr)
 	{
 		cout << i << tab;
