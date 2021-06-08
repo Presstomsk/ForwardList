@@ -1,4 +1,16 @@
-﻿#include<iostream>
+﻿/*TODO:
+В класс ForwardList добавить методы:
+1. void erase(int index);		//Удаляет значение по заданному индексу
+2. Написать деструктор таким образом, чтобы он очищал список (удалял из него све элементы) перед удалением;
+3. Оптимировать методы удаления элементов;
+4. CopyMethods
+5. MoveMethods
+6. Обеспечить создание списка следующим образом:
+	ForwardList list = { 3, 5, 8, 13, 21 };*/
+
+
+
+#include<iostream>
 using namespace std;
 using std::cin;
 using std::cout;
