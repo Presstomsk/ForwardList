@@ -144,11 +144,12 @@ public:
 	void push_front(int Data)
 	{
 		//1) Создаем новый элемент
-		Element* New = new Element(Data);
+		//Element* New = new Element(Data);
 		//2) Привязываем новый элемент к списку
-		New->pNext = Head;
+		//New->pNext = Head;
 		//3) Говорим, что новый элемент будет начальным элементом списка
-		Head = New;
+		//Head = New;
+		Head = new Element(Data, Head);
 		size++;
 	}
 	void push_back(int Data)
@@ -159,13 +160,16 @@ public:
 			return;
 		}
 	    //1) Создаем новый элемент
-		Element* New = new Element(Data);
+		//Element* New = new Element(Data);
 		//2) Доходим до конца списка
-		Element* Temp = Head;
-		while (Temp->pNext)
-			Temp = Temp->pNext;
+		//Element* Temp = Head;
+		//while (Temp->pNext)
+		//	Temp = Temp->pNext;
 		//3) Прикрепляем новый элемент к последнему
-		Temp->pNext = New;
+		//Temp->pNext = New;
+		Element* Temp = Head;
+		for (; Temp->pNext; Temp = Temp->pNext);
+		Temp->pNext = new Element(Data);
 		size++;
 	}
 	// Erasing elements:
@@ -233,12 +237,13 @@ public:
 	{
 		if (this == &other)return *this;
 		while (Head)pop_front();
-		Element* Temp = other.Head;//Итератор Temp будет проходить по списку other
-		while (Temp)
-		{
-			push_back(Temp->Data);//Каждый элемент списка other добавляем в конец нашего списка
-			Temp = Temp->pNext; // Переход на следующий элемент
-		}
+		//Element* Temp = other.Head;//Итератор Temp будет проходить по списку other
+		//while (Temp)
+		//{
+		//	push_back(Temp->Data);//Каждый элемент списка other добавляем в конец нашего списка
+		//	Temp = Temp->pNext; // Переход на следующий элемент
+		//}
+		for (Element* Temp = other.Head; Temp; Temp = Temp->pNext)push_back(Temp->Data);
 		cout << "CopyAssignment:\t" << this << endl;
 		return *this;
 	}
@@ -251,7 +256,7 @@ public:
 		cout << "MoveAssignment:\t" << this << endl;
 		return *this;
 	}
-	ForwardList& operator+=(const ForwardList& right) 
+	/*ForwardList& operator+=(const ForwardList& right)   Проработать на досуге!!!!!
 	{
 		//1) Доходим до конца первого списка
 		
@@ -263,18 +268,20 @@ public:
 		Temp->pNext = Copyright.Head;
 		Copyright.Head=nullptr;
 		return *this;
-	}
+	}*/
 	
 	//Methods
 	void print()
 	{
-		Element* Temp = Head;//Temp-итератор.
-		while (Temp)         //Итератор-это указатель, при помощи которого
+		//Element* Temp = Head;//Temp-итератор.
+		//while (Temp)         //Итератор-это указатель, при помощи которого
 			                 //можно получить доступ к элементам структуры данных
-		{
+		//{
+		//	cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
+		//	Temp = Temp->pNext;
+		//}
+		for(Element* Temp = Head; Temp; Temp = Temp->pNext)
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-			Temp = Temp->pNext;
-		}
 		cout << "Количество элементов списка: " << size << endl;
 		cout << "Общее количество элементов: " << Element::count << endl;
 	}
@@ -288,7 +295,7 @@ ForwardList operator+(const ForwardList& left, const ForwardList& right)
 	return cat;
 }
 #define BASE_CHECK
-//#define COPY_METHODS_CHECK
+#define COPY_METHODS_CHECK
 //#define OPERATOR_PLUS_CHECK
 //#define RANG_BASED_LIST
 
@@ -305,7 +312,8 @@ void main()
 		list5.push_back(rand() % 100);
 	}
 	list.print();
-
+	list.push_front(15);
+	list.print();
 	list.push_back(123);
 	list.print();
 	list.pop_front();
@@ -356,8 +364,8 @@ void main()
 		cout << i << tab;
 	}
 	cout << endl;
-#endif RANG_BASED_LIST
-	ForwardList list = { 3,5,8,13,21 };
+#endif //RANG_BASED_LIST
+	/*ForwardList list = { 3,5,8,13,21 };
 	for (int i : list)
 	{
 		cout << i << tab;
@@ -367,5 +375,5 @@ void main()
 	{
 		cout << *it << tab;
 	}
-	cout << endl;
+	cout << endl;*/
 }
