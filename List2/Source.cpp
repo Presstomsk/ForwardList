@@ -14,15 +14,16 @@
 #include<iostream>
 using namespace std;
 
+template<typename T>
 class List
 {
 	class Element
 	{
-		int Data;
+		T Data;
 		Element* pNext;
 		Element* pPrev;
 	public:
-		Element(int Data, Element* pNext = nullptr, Element* pPrev = nullptr)
+		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr)
 		{
 			this->Data = Data;
 			this->pNext = pNext;
@@ -33,9 +34,10 @@ class List
 		{
 			cout << "EDestructor:\t" << this << endl;
 		}
-		friend class List;
+		friend class List<T>;
 	} *Head, * Tail;//Сразу же после описания класса объявляем два указателя на объекты этого класса.
 	unsigned int size;
+public:
 	class Iterator
 	{
 		Element* Temp;
@@ -68,11 +70,11 @@ class List
 		{
 			return this->Temp != other.Temp;
 		}
-		const int& operator*() const
+		const T& operator*() const
 		{
 			return Temp->Data;
 		}
-		int& operator*()
+		T& operator*()
 		{
 			return Temp->Data;
 		}
@@ -94,9 +96,9 @@ public:
 		size = 0;
 		cout << "LConstructor:\t" << this << endl;
 	}
-	List(const initializer_list<int>& il) :List()
+	List(const initializer_list<T>& il) :List()
 	{
-		for (int const* it = il.begin(); it != il.end(); it++)
+		for (T const* it = il.begin(); it != il.end(); it++)
 		{
 			push_back(*it);
 		}
@@ -106,7 +108,7 @@ public:
 		while (Head)pop_front();
 		cout << "LDestructor:\t" << this << endl;
 	}
-	void push_front(int Data)
+	void push_front(T Data)
 	{			
 		Element* New = new Element(Data);
 		New->pNext = Head;
@@ -116,7 +118,7 @@ public:
 		if (!Tail) Tail = Head;
 		size++;
 	}
-	void push_back(int Data)
+	void push_back(T Data)
 	{
 		Element* New = new Element(Data);
 		New->pPrev = Tail;
@@ -126,7 +128,7 @@ public:
 		if (!Head) Head = Tail;
 		size++;
 	}
-	void insert(int index, int data)
+	void insert(unsigned int index, T data)
 	{
 		if (index == 0)
 		{
@@ -187,7 +189,7 @@ public:
 		delete to_del;
 		size--;
 	}
-	void erase(int index)
+	void erase(unsigned int index)
 	{
 		if (index == 0)
 		{
@@ -234,8 +236,9 @@ public:
 		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 		{
 			cout << Temp << " " << Temp->pPrev << " " <<Temp->Data<<" "<<Temp->pNext<< endl;
-			cout << "Количество элементов списка: "<<size<<endl;
+			
 		}
+		cout << "Количество элементов списка: " << size << endl;
 		cout << "------------------------------" << endl;
 	}
 };
@@ -245,7 +248,7 @@ void main()
 	setlocale(LC_ALL,"Russian");
 	int n,p;
 	cout << "Введите размер списка: "; cin >> n;
-	List list;
+	List<int> list;
 	for (int i = 0; i < n; i++)
 	{
 		list.push_front(rand()%100);
@@ -264,11 +267,27 @@ void main()
 	cout << "Введите индекс удаляемого элемента: "; cin >> n;
 	list.erase(n);
 	list.Print();
-	List list2 = { 2,14,45,67,100 };
+	List<int> list2 = { 2,14,45,67,100 };
 	list2.Print();
 	for (int i : list2)
 	{
 		cout << i << " ";
 	}
 	cout << endl;
+	List<double> list3 = { 2.5,14.56,45.7,67.89,100.976 };
+	//list3.Print();
+	for(List<double>::Iterator it=list3.begin();it !=list3.end();it++)
+	{
+		cout << *it << " ";
+	}
+	cout << endl;
+	/*for (double i : list3)
+	{
+		cout << i << " ";
+	}*/
+	List<string>s_list = { "Хорошо","живет","на","свете","Винни-Пух" };
+	for (string i : s_list)
+	{
+		cout << i << " ";
+	}
 }
