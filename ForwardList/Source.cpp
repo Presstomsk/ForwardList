@@ -377,13 +377,13 @@ void main()
 	}
 	cout << endl;
 #endif //RANG_BASED_LIST
-	/*ForwardList list = { 3,5,8,13,21 };
-	for (int i : list)
+	ForwardList list6 = { 3,5,8,13,21 };
+	for (int i : list6)
 	{
 		cout << i << tab;
 	}
 	cout << endl;
-	for (Iterator it = list.begin(); it != list.end(); it++)
+	/*for (Iterator it = list.begin(); it != list.end(); it++)
 	{
 		cout << *it << tab;
 	}
